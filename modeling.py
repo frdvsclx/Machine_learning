@@ -1,7 +1,5 @@
 import  pandas as pd
-from sklearn.metrics import mean_absolute_error
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.model_selection import train_test_split
 
 pd.set_option('display.max_columns',None)
 pd.set_option('display.width', 500)
@@ -13,7 +11,7 @@ newest_home = 2025 - df_data["YearBuilt"].max()
 print(newest_home)
 print(df_data.YearBuilt)
 
-df_data.columns
+df_data.columns()
 df_data= df_data.dropna(axis=0)
 
 
@@ -44,33 +42,7 @@ The predictions are
 '''
 
 
-#Mean Absolute Error
-df_data2 = pd.read_csv("datasets/melb_data.csv")
 
-filtered_df_data2 = df_data2.dropna(axis=0)
-b= ['Rooms', 'Bathroom', 'Landsize', 'BuildingArea','YearBuilt', 'Lattitude', 'Longtitude']
-y2 = filtered_df_data2.Price
-X2= filtered_df_data2[b]
-
-df_model2=  DecisionTreeRegressor()
-df_model2.fit(X2, y2)
-
-predicted_home_prices= df_model2.predict(X2)
-mean_absolute_error(y2,predicted_home_prices)
-#Out[26]: 434.71594577146544 --> in-sample score
-
-#validation value:
-
-train_X, val_X, train_y, val_y = train_test_split(X2, y2, random_state = 0)
-
-df_model3= DecisionTreeRegressor()
-df_model3.fit(train_X,train_y)
-
-val_prediction = df_model3.predict(val_X)
-print(mean_absolute_error(val_y,val_prediction))
-#out: 260042.310522918
-
-#UNDERFITTING AND OVERFITTING
 
 
 
