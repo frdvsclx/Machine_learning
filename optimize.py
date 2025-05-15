@@ -26,7 +26,7 @@ mean_absolute_error(y, predicted_home_prices)
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=0)
 # random_state= 0,1,42 --> it divides same for evey time
 # 42: origin num (The Hitchhiker's Guide to the Galaxy ref.)
-# if none: it divides different for evey time
+# if none: it divides different for every time
 
 df_model3 = DecisionTreeRegressor()
 df_model3.fit(train_X, train_y)
@@ -51,6 +51,9 @@ y2 = df_data2.Price  # target variable
 X2 = df_data2[a]  # features matris
 
 train_X2, val_X2, train_y2, val_y2 = train_test_split(X2, y2, random_state=1)
+#X_train is a randomly selected subset of 80% of X.
+#y_train is a target values corresponding to X_train (Price).,
+
 # train_test_split(X2, y2, test_size=0.2, random_state=1)
 # 1,3,4. rows... %80 train, 2,5,6. rows... %20 test
 # random_state=
