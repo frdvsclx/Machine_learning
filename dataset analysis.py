@@ -109,3 +109,21 @@ print(score_dataset(imputed_X2_train, imputed_X2_valid, y2_train, y2_valid))
 #178166.46269899711
 
 #3)imputation and add one column:
+
+X2_train_ext = X2_train.copy()
+X2_valid_ext = X2_valid.copy()
+
+for col in missing_cols:
+    X2_train_ext[col + 'missing'] = X2_train_ext[col].isnull()
+    X2_valid_ext[col + 'missing'] = X2_valid_ext[col].isnull()
+
+imputed_X2_train_ext= pd.DataFrame(my_imputer.fit_transform(X2_train_ext))
+imputed_X2_valid_ext = pd.DataFrame(my_imputer.fit_transform(X2_valid_ext))
+
+imputed_X2_train_ext.columns = X2_train_ext.columns
+imputed_X2_valid_ext.columns = X2_valid_ext.columns
+
+print("MAE from Approach 3 (An Extension to Imputation):")
+print(score_dataset(imputed_X2_train_ext, imputed_X2_valid_ext, y2_train, y2_valid))
+#179986.2708570026
+
